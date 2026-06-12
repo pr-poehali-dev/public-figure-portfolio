@@ -187,7 +187,7 @@ const Index = () => {
                   style={{ boxShadow: '24px 24px 64px rgba(15,36,68,0.16)' }}
                 >
                   <img
-                    src="https://cdn.poehali.dev/projects/597e04a8-7736-42c5-8c0b-d6ea55439165/bucket/e3821dc6-e75a-4e4d-b2d2-27dffdc47071.png"
+                    src="https://cdn.poehali.dev/projects/597e04a8-7736-42c5-8c0b-d6ea55439165/bucket/edfeb7f1-094b-4698-8d95-f60da6f900c8.jpeg"
                     alt="Слюнченко Данила Александрович"
                     className="w-full h-full object-cover object-top"
                   />
@@ -293,67 +293,6 @@ const Index = () => {
         </div>
       </section>
 
-      {/* GALLERY */}
-      <section id="gallery" className="py-24 lg:py-32 bg-white">
-        <div className="max-w-7xl mx-auto px-6 lg:px-10">
-          <div className="text-center mb-16 reveal">
-            <p className="text-xs text-burgundy tracking-widest uppercase font-semibold mb-4 font-body">Фотоархив</p>
-            <h2 className="font-display font-bold text-navy text-4xl lg:text-5xl leading-tight">Галерея</h2>
-            <div className="w-12 h-0.5 bg-burgundy mx-auto mt-6" />
-            <p className="text-graphite/50 mt-4 text-sm font-body">Нажмите на фото для увеличения</p>
-          </div>
-          <div className="grid grid-cols-2 md:grid-cols-3 gap-3 lg:gap-4">
-            {GALLERY_ITEMS.map((item, i) => (
-              <button
-                key={item.id}
-                onClick={() => setLightbox(i)}
-                className={`reveal group relative overflow-hidden rounded-sm cursor-pointer ${i === 0 ? 'md:col-span-2' : ''}`}
-                style={{ aspectRatio: '4/3', transitionDelay: `${i * 0.07}s` }}
-              >
-                <div className="w-full h-full transition-transform duration-500 group-hover:scale-105" style={{ background: `linear-gradient(135deg, ${item.color} 0%, ${item.color}cc 100%)` }}>
-                  <div className="w-full h-full flex flex-col items-center justify-center">
-                    <Icon name="Image" size={28} className="text-white/25" />
-                    <span className="text-white/35 text-xs mt-2 font-body">{item.label}</span>
-                  </div>
-                </div>
-                <div className="absolute inset-0 bg-navy/0 group-hover:bg-navy/35 transition-colors duration-300 flex items-center justify-center">
-                  <div className="opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                    <div className="w-10 h-10 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center">
-                      <Icon name="ZoomIn" size={18} className="text-white" />
-                    </div>
-                  </div>
-                </div>
-              </button>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* LIGHTBOX */}
-      {lightbox !== null && (
-        <div className="fixed inset-0 z-50 lightbox-backdrop flex items-center justify-center p-6" onClick={() => setLightbox(null)}>
-          <button className="absolute top-6 right-6 w-10 h-10 rounded-full bg-white/10 flex items-center justify-center text-white hover:bg-white/20 transition-colors" onClick={() => setLightbox(null)}>
-            <Icon name="X" size={20} />
-          </button>
-          <div
-            className="w-full max-w-2xl rounded-sm animate-scale-in"
-            style={{ aspectRatio: '4/3', background: `linear-gradient(135deg, ${GALLERY_ITEMS[lightbox].color} 0%, ${GALLERY_ITEMS[lightbox].color}cc 100%)` }}
-            onClick={(e) => e.stopPropagation()}
-          >
-            <div className="w-full h-full flex flex-col items-center justify-center">
-              <Icon name="Image" size={48} className="text-white/25" />
-              <span className="text-white/45 text-sm mt-3 font-body">{GALLERY_ITEMS[lightbox].label}</span>
-            </div>
-          </div>
-          <button className="absolute left-6 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-white/10 flex items-center justify-center text-white hover:bg-white/20 transition-colors" onClick={(e) => { e.stopPropagation(); setLightbox((l) => (l! > 0 ? l! - 1 : GALLERY_ITEMS.length - 1)); }}>
-            <Icon name="ChevronLeft" size={20} />
-          </button>
-          <button className="absolute right-6 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-white/10 flex items-center justify-center text-white hover:bg-white/20 transition-colors" onClick={(e) => { e.stopPropagation(); setLightbox((l) => (l! < GALLERY_ITEMS.length - 1 ? l! + 1 : 0)); }}>
-            <Icon name="ChevronRight" size={20} />
-          </button>
-        </div>
-      )}
-
       {/* DOCUMENTS */}
       <section id="documents" className="py-24 lg:py-32 bg-cream">
         <div className="max-w-7xl mx-auto px-6 lg:px-10">
@@ -399,14 +338,18 @@ const Index = () => {
               <p className="text-graphite/70 leading-relaxed mb-10 font-body">Для предложений о сотрудничестве, участия в мероприятиях и общественных инициативах — свяжитесь через форму или в социальных сетях.</p>
               <div className="space-y-4 mb-10">
                 {[
-                  { icon: 'MapPin', label: 'Брянск, Россия' },
-                  { icon: 'Mail', label: 'Электронная почта' },
+                  { icon: 'MapPin', label: 'Брянск, Россия', href: null },
+                  { icon: 'Mail', label: 'danila.aleksandrowitch@yandex.ru', href: 'mailto:danila.aleksandrowitch@yandex.ru' },
                 ].map((item) => (
                   <div key={item.label} className="flex items-center gap-3">
                     <div className="w-10 h-10 rounded-sm bg-navy flex items-center justify-center flex-shrink-0">
                       <Icon name={item.icon} size={16} className="text-white" />
                     </div>
-                    <span className="text-graphite font-body">{item.label}</span>
+                    {item.href ? (
+                      <a href={item.href} className="text-graphite font-body hover:text-burgundy transition-colors">{item.label}</a>
+                    ) : (
+                      <span className="text-graphite font-body">{item.label}</span>
+                    )}
                   </div>
                 ))}
               </div>
