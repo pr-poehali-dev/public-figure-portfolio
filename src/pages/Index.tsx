@@ -195,12 +195,13 @@ const Index = () => {
               <div className="relative">
                 <div
                   className="w-72 h-80 lg:w-96 lg:h-[480px] rounded-sm overflow-hidden"
-                  style={{ background: 'linear-gradient(135deg, #0f2444 0%, #1a3a6b 50%, #2c2f36 100%)', boxShadow: '24px 24px 64px rgba(15,36,68,0.16)' }}
+                  style={{ boxShadow: '24px 24px 64px rgba(15,36,68,0.16)' }}
                 >
-                  <div className="w-full h-full flex flex-col items-center justify-center text-white/20">
-                    <Icon name="User" size={80} />
-                    <p className="mt-4 text-xs font-body tracking-widest uppercase">Добавить фото</p>
-                  </div>
+                  <img
+                    src="https://cdn.poehali.dev/projects/597e04a8-7736-42c5-8c0b-d6ea55439165/bucket/e3821dc6-e75a-4e4d-b2d2-27dffdc47071.png"
+                    alt="Слюнченко Данила Александрович"
+                    className="w-full h-full object-cover object-top"
+                  />
                 </div>
                 <div className="absolute -bottom-4 -left-4 w-24 h-24 border-2 border-burgundy/30 rounded-sm pointer-events-none" />
                 <div className="absolute -top-4 -right-4 w-16 h-16 border border-navy/20 rounded-sm pointer-events-none" />
