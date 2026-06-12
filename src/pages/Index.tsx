@@ -335,10 +335,11 @@ const Index = () => {
               <p className="text-xs text-burgundy tracking-widest uppercase font-semibold mb-4 font-body">Связь</p>
               <h2 className="font-display font-bold text-navy text-4xl lg:text-5xl leading-tight mb-6">Контакты</h2>
               <div className="w-12 h-0.5 bg-burgundy mb-8" />
-              <p className="text-graphite/70 leading-relaxed mb-10 font-body">Для предложений о сотрудничестве, участия в мероприятиях и общественных инициативах — свяжитесь через форму или в социальных сетях.</p>
-              <div className="space-y-4 mb-10">
+              <p className="text-graphite/70 leading-relaxed mb-10 font-body">Для предложений о сотрудничестве, участия в мероприятиях и общественных инициативах — свяжитесь через форму или напрямую.</p>
+              <div className="space-y-4">
                 {[
                   { icon: 'MapPin', label: 'Брянск, Россия', href: null },
+                  { icon: 'Phone', label: '+7 (900) 699-84-04', href: 'tel:+79006998404' },
                   { icon: 'Mail', label: 'danila.aleksandrowitch@yandex.ru', href: 'mailto:danila.aleksandrowitch@yandex.ru' },
                 ].map((item) => (
                   <div key={item.label} className="flex items-center gap-3">
@@ -352,17 +353,6 @@ const Index = () => {
                     )}
                   </div>
                 ))}
-              </div>
-              <div>
-                <p className="text-xs text-graphite/40 tracking-widest uppercase font-semibold mb-4 font-body">Социальные сети</p>
-                <div className="flex gap-3">
-                  {[{ icon: 'MessageCircle', label: 'ВКонтакте' }, { icon: 'Send', label: 'Telegram' }].map((s) => (
-                    <button key={s.label} className="flex items-center gap-2 px-4 py-2.5 border border-navy/20 rounded-sm text-navy text-sm font-medium hover:bg-navy hover:text-white transition-colors duration-200 font-body">
-                      <Icon name={s.icon} size={15} />
-                      {s.label}
-                    </button>
-                  ))}
-                </div>
               </div>
             </div>
 
@@ -422,13 +412,6 @@ const Index = () => {
             <div>
               <p className="font-display font-semibold text-xl text-white mb-1">Слюнченко Данила Александрович</p>
               <p className="text-white/40 text-xs tracking-wide font-body">Общественный деятель · Брянская область</p>
-            </div>
-            <div className="flex gap-3">
-              {[{ icon: 'MessageCircle', label: 'ВК' }, { icon: 'Send', label: 'TG' }].map((s) => (
-                <button key={s.label} className="w-9 h-9 rounded-sm border border-white/20 flex items-center justify-center hover:bg-white/10 transition-colors">
-                  <Icon name={s.icon} size={15} className="text-white/70" />
-                </button>
-              ))}
             </div>
             <p className="text-white/30 text-xs font-body">© {new Date().getFullYear()} Все права защищены</p>
           </div>
