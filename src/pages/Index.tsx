@@ -49,12 +49,16 @@ function scrollTo(id: string) {
   if (el) el.scrollIntoView({ behavior: 'smooth' });
 }
 
+const SEND_EMAIL_URL = 'https://functions.poehali.dev/126d5d34-f4cd-40c7-b57e-574f01f4b5d2';
+
 const Index = () => {
   const [navScrolled, setNavScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
   const [activeSection, setActiveSection] = useState('hero');
   const [formData, setFormData] = useState({ name: '', phone: '', email: '', message: '' });
   const [formSent, setFormSent] = useState(false);
+  const [formLoading, setFormLoading] = useState(false);
+  const [formError, setFormError] = useState('');
 
   useEffect(() => {
     const elements = document.querySelectorAll('.reveal');
@@ -91,9 +95,24 @@ const Index = () => {
     setMobileOpen(false);
   };
 
-  const handleFormSubmit = (e: React.FormEvent) => {
+  const handleFormSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setFormSent(true);
+    setFormError('');
+    setFormLoading(true);
+    try {
+      const res = await fetch(SEND_EMAIL_URL, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(formData),
+      });
+      if (!res.ok) throw new Error('Ошибка отправки');
+      setFormSent(true);
+      setFormData({ name: '', phone: '', email: '', message: '' });
+    } catch {
+      setFormError('Не удалось отправить сообщение. Попробуйте ещё раз.');
+    } finally {
+      setFormLoading(false);
+    }
   };
 
   return (
@@ -394,9 +413,28 @@ const Index = () => {
                       className="w-full px-4 py-3 border border-gray-200 rounded-sm text-graphite placeholder:text-gray-300 focus:outline-none focus:border-navy transition-colors text-sm font-body resize-none"
                     />
                   </div>
-                  <button type="submit" className="w-full py-4 bg-navy text-white text-sm font-semibold tracking-widest uppercase rounded-sm hover:bg-navy-light transition-colors duration-200 flex items-center justify-center gap-3 font-body">
-                    <span>Отправить сообщение</span>
-                    <Icon name="Send" size={15} />
+                  {formError && (
+                    <div className="flex items-center gap-2 p-3 bg-red-50 border border-red-200 rounded-sm">
+                      <Icon name="AlertCircle" size={15} className="text-red-500 flex-shrink-0" />
+                      <span className="text-red-600 text-sm font-body">{formError}</span>
+                    </div>
+                  )}
+                  <button
+                    type="submit"
+                    disabled={formLoading}
+                    className="w-full py-4 bg-navy text-white text-sm font-semibold tracking-widest uppercase rounded-sm hover:bg-navy-light transition-colors duration-200 flex items-center justify-center gap-3 font-body disabled:opacity-60 disabled:cursor-not-allowed"
+                  >
+                    {formLoading ? (
+                      <>
+                        <div className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin" />
+                        <span>Отправка...</span>
+                      </>
+                    ) : (
+                      <>
+                        <span>Отправить сообщение</span>
+                        <Icon name="Send" size={15} />
+                      </>
+                    )}
                   </button>
                 </form>
               )}
