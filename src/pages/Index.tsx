@@ -6,7 +6,6 @@ const NAV_LINKS = [
   { id: 'about', label: 'Биография' },
   { id: 'achievements', label: 'Достижения' },
   { id: 'directions', label: 'Деятельность' },
-  { id: 'gallery', label: 'Галерея' },
   { id: 'documents', label: 'Документы' },
   { id: 'contact', label: 'Контакты' },
 ];
@@ -39,15 +38,6 @@ const DIRECTIONS = [
   { icon: 'BookOpen', title: 'Гражданское просвещение', desc: 'Популяризация правовых знаний и гражданской ответственности.' },
 ];
 
-const GALLERY_ITEMS = [
-  { id: 1, label: 'Движение Первых', color: '#0f2444', span: true },
-  { id: 2, label: 'Молодая Гвардия', color: '#7c1d2d', span: false },
-  { id: 3, label: 'Экологические проекты', color: '#2c2f36', span: false },
-  { id: 4, label: 'Общественная деятельность', color: '#1a3a6b', span: false },
-  { id: 5, label: 'Брянская область', color: '#4a4f5a', span: false },
-  { id: 6, label: 'Правовой диктант', color: '#9e2a3f', span: false },
-];
-
 const DOCUMENTS = [
   { title: 'Грамота участника шахматной партии «Единства»', date: '30.10.2025', type: 'Грамота', icon: 'Trophy' },
   { title: 'Сертификат «Большого правового диктанта»', date: '12.12.2025', type: 'Сертификат', icon: 'FileText' },
@@ -63,7 +53,6 @@ const Index = () => {
   const [navScrolled, setNavScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
   const [activeSection, setActiveSection] = useState('hero');
-  const [lightbox, setLightbox] = useState<number | null>(null);
   const [formData, setFormData] = useState({ name: '', phone: '', email: '', message: '' });
   const [formSent, setFormSent] = useState(false);
 
@@ -186,7 +175,7 @@ const Index = () => {
               <div className="flex flex-wrap gap-3 opacity-0 animate-fade-in-up" style={{ animationDelay: '0.55s', animationFillMode: 'forwards' }}>
                 <button onClick={() => handleNav('about')} className="px-7 py-3 bg-navy text-white text-sm font-semibold tracking-wide rounded-sm hover:bg-navy-light transition-colors duration-200">Биография</button>
                 <button onClick={() => handleNav('achievements')} className="px-7 py-3 border border-navy text-navy text-sm font-semibold tracking-wide rounded-sm hover:bg-navy hover:text-white transition-colors duration-200">Достижения</button>
-                <button onClick={() => handleNav('gallery')} className="px-7 py-3 border border-navy text-navy text-sm font-semibold tracking-wide rounded-sm hover:bg-navy hover:text-white transition-colors duration-200">Галерея</button>
+                <button onClick={() => handleNav('documents')} className="px-7 py-3 border border-navy text-navy text-sm font-semibold tracking-wide rounded-sm hover:bg-navy hover:text-white transition-colors duration-200">Документы</button>
                 <button onClick={() => handleNav('contact')} className="px-7 py-3 bg-burgundy text-white text-sm font-semibold tracking-wide rounded-sm hover:bg-burgundy-light transition-colors duration-200">Связаться</button>
               </div>
             </div>
